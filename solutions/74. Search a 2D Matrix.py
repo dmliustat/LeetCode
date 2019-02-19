@@ -1,3 +1,4 @@
+# Two Binary Search
 class Solution:
     def searchMatrix(self, matrix: 'List[List[int]]', target: 'int') -> 'bool':
         if ((len(matrix) == 0) or (not matrix) or (len(matrix[0]) == 0)):
@@ -34,6 +35,29 @@ class Solution:
             else:
                 end = mid
         if ((matrix[T][start] == target) or (matrix[T][end] == target)):
+            return True;
+        else:
+            return False;
+        
+# One Binary Search
+class Solution:
+    def searchMatrix(self, matrix: 'List[List[int]]', target: 'int') -> 'bool':
+        if ((len(matrix) == 0) or (not matrix) or (len(matrix[0]) == 0)):
+            return False;
+        
+        ncol = len(matrix[0])
+        nrow = len(matrix)
+        start = 0
+        end = ncol * nrow - 1
+        while start + 1 < end:
+            mid = (end - start)//2 + start
+            if (matrix[mid//ncol][mid%ncol] == target):
+                return True;
+            elif (matrix[mid//ncol][mid%ncol] < target):
+                start = mid
+            else:
+                end = mid
+        if ((matrix[start//ncol][start%ncol] == target) or (matrix[end//ncol][end%ncol] == target)):
             return True;
         else:
             return False;
